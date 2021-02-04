@@ -9,5 +9,5 @@ interface IApiDog {
     suspend fun getFetchApiDog(): Response<BreedDog>
 
     @GET("breed/{breed}/images")
-    suspend fun getFetchImageDog(@Path("breed") bredd: String): Response<ListDog>
+    suspend fun getFetchImageDog(@Path("breed") breed: String): Response<ListDog>
 }
