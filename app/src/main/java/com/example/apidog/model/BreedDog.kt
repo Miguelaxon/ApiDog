@@ -10,5 +10,5 @@ import com.google.gson.annotations.SerializedName
 @Entity(tableName = "breed_dog")
 data class BreedDog(@PrimaryKey(autoGenerate = true) @NonNull @ColumnInfo(name= "id") var id: Int = 0,
                     @SerializedName("message")
-                    var breed_dog: List<String>,
+                    var breed_dog: String,
                     var status: String)

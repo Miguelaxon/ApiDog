@@ -8,7 +8,7 @@ import com.example.apidog.model.BreedDog
 import com.example.apidog.model.BreedDogDAO
 import com.example.apidog.model.ListDog
 
-@Database(entities = [BreedDog::class,ListDog::class], version = 1)
+@Database(entities = [BreedDog::class], version = 1)
 abstract class ApiDogBD : RoomDatabase() {
     abstract fun getBreedDogDao(): BreedDogDAO
     companion object {
@@ -21,7 +21,7 @@ abstract class ApiDogBD : RoomDatabase() {
             }
             synchronized(this) {
                 val instance = Room.databaseBuilder(context.applicationContext,
-                    ApiDogBD::class.java, "apiDogDB")
+                    ApiDogBD::class.java, "apiDogBD")
                     .build()
                 INSTANCE = instance
                 return instance

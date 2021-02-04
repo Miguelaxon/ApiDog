@@ -17,7 +17,7 @@ import com.google.gson.annotations.SerializedName
 )
 data class ListDog(@PrimaryKey(autoGenerate = true) @NonNull var id: Int = 0,
                    @SerializedName("message")
-                   var list_dog: List<String>,
+                   var list_dog: String,
                    var status: String,
                    var idBreedDog: Int)
 
