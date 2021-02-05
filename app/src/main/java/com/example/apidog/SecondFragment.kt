@@ -45,10 +45,10 @@ class SecondFragment : Fragment() {
         binding.tvTitulo.text = bunBreed.toUpperCase()
         viewModel.returnImage(bunBreed).observe(viewLifecycleOwner, Observer {
             it?.let {
-                Log.d("image","$it")
-                adapter.updateList(it)
-                Toast.makeText(context, "Titulo $bunBreed La cantidad de fotos es ${it}",
-                        Toast.LENGTH_LONG).show()
+                adapter.run {
+                    it
+                }
+                //adapter.updateList(it)
             }
         })
     }
