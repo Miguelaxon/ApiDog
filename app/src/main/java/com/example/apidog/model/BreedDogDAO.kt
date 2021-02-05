@@ -15,10 +15,10 @@ interface BreedDogDAO {
     suspend fun insertListDog(listDog: ListDog)
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    suspend fun insertAllBreedDog(breedDog: BreedDog)
+    suspend fun insertAllBreedDog(breedDog: List<BreedDog>)
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    suspend fun insertAllListDog(listDog: ListDog)
+    suspend fun insertAllListDog(listDog: List<ListDog>)
 
     @Query("SELECT * FROM breed_dog")
     fun getAllBreedDog(): LiveData<List<BreedDog>>
@@ -29,6 +29,6 @@ interface BreedDogDAO {
     @Query("SELECT * FROM breed_dog WHERE id = :mId")
     fun getBreedDog(mId: Int): LiveData<BreedDog>
 
-    @Query("SELECT * FROM list_dog WHERE id = :mId")
-    fun getListDog(mId: Int): LiveData<ListDog>
+    @Query("SELECT * FROM list_dog WHERE status = :mList")
+    fun getListDog(mList: String): LiveData<List<ListDog>>
 }

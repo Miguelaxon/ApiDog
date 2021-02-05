@@ -11,21 +11,27 @@ import com.example.apidog.model.local.ApiDogBD
 import com.example.apidog.model.remote.ApiDogRepository
 import kotlinx.coroutines.launch
 
-class ApiDogViewModel(appication: Application): AndroidViewModel(appication) {
+class ApiDogViewModel(application: Application): AndroidViewModel(application) {
     private val repository: ApiDogRepository
     val allDataBreed: LiveData<List<BreedDog>>
-    val allDataList: LiveData<List<ListDog>>
     val selectedBreedDog: MutableLiveData<BreedDog> = MutableLiveData()
     val selectedListDog: MutableLiveData<ListDog> = MutableLiveData()
 
     init {
-        val apiDog = ApiDogBD.getDataBase(appication).getBreedDogDao()
+        val apiDog = ApiDogBD.getDataBase(application).getBreedDogDao()
         repository = ApiDogRepository(apiDog)
         viewModelScope.launch {
             repository.getFetchApiDogCoroutines()
         }
         allDataBreed = repository.listAllBreed
-        allDataList = repository.listAllList
+    }
+
+    fun returnImage(breed: String): LiveData<List<ListDog>>{
+        return repository.getImageBreed(breed)
+    }
+
+    fun selectedImage(breed: String) = viewModelScope.launch{
+        repository.getFetchApiDogCoroutinesString(breed)
     }
 
     fun selectedBreed(breedDog: BreedDog?){

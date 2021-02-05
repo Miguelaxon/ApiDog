@@ -7,17 +7,8 @@ import androidx.room.ForeignKey
 import androidx.room.PrimaryKey
 import com.google.gson.annotations.SerializedName
 
-@Entity(tableName = "list_dog",
-    foreignKeys = [ForeignKey(
-        entity = BreedDog::class,
-        parentColumns = arrayOf("id"),
-        childColumns = arrayOf("idBreedDog"),
-        onDelete = ForeignKey.CASCADE
-    )]
-)
+@Entity(tableName = "list_dog")
 data class ListDog(@PrimaryKey(autoGenerate = true) @NonNull var id: Int = 0,
-                   @SerializedName("message")
                    var list_dog: String,
-                   var status: String,
-                   var idBreedDog: Int)
+                   var status: String)
 

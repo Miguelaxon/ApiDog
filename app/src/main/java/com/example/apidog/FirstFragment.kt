@@ -1,6 +1,7 @@
 package com.example.apidog
 
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -9,6 +10,7 @@ import android.widget.Button
 import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.Observer
 import androidx.navigation.fragment.findNavController
+import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.apidog.databinding.FragmentFirstBinding
@@ -32,7 +34,7 @@ class FirstFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         var adapter = BreedDogAdapter()
         binding.rv.adapter = adapter
-        binding.rv.layoutManager = LinearLayoutManager(context)
+        binding.rv.layoutManager = GridLayoutManager(context,1)
 
         viewModel.allDataBreed.observe(viewLifecycleOwner, Observer {
             it?.let {
@@ -42,8 +44,10 @@ class FirstFragment : Fragment() {
 
         adapter.selectedBreed().observe(viewLifecycleOwner, Observer {
             it?.let {
-                viewModel.selectedBreed(it)
-                findNavController().navigate(R.id.action_FirstFragment_to_SecondFragment)
+                val bundle = Bundle()
+                bundle.putString("breed", it.breed_dog)
+                viewModel.selectedImage(it.breed_dog)
+                findNavController().navigate(R.id.action_FirstFragment_to_SecondFragment, bundle)
             }
         })
     }

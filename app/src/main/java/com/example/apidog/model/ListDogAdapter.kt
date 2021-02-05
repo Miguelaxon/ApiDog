@@ -18,12 +18,13 @@ class ListDogAdapter: RecyclerView.Adapter<ListDogAdapter.ListDogViewHolder>() {
 
     fun updateList(list: List<ListDog>){
         listListDog = list
+        notifyDataSetChanged()
     }
 
     inner class ListDogViewHolder(private val binding: ItemImageviewBinding):
         RecyclerView.ViewHolder(binding.root), View.OnClickListener {
         fun bind(listDog: ListDog){
-            Glide.with(binding.imageView).load(listDog.list_dog).centerCrop().into(binding.imageView)
+            Glide.with(binding.imageView).load(listDog.list_dog).into(binding.imageView)
             itemView.setOnClickListener(this)
         }
         override fun onClick(v: View?) {
