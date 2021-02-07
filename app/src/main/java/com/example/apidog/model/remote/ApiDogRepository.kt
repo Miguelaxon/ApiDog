@@ -3,9 +3,9 @@ package com.example.apidog.model.remote
 import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
-import com.example.apidog.model.ApiDogClient
+import com.example.apidog.model.dao.ApiDogClient
 import com.example.apidog.model.BreedDog
-import com.example.apidog.model.BreedDogDAO
+import com.example.apidog.model.dao.BreedDogDAO
 import com.example.apidog.model.ListDog
 
 class ApiDogRepository (private val breedDogDAO: BreedDogDAO){

@@ -1,4 +1,4 @@
-package com.example.apidog.model
+package com.example.apidog.model.dao
 
 import com.example.apidog.model.remote.BreedListDog
 import com.example.apidog.model.remote.ImageDog

@@ -7,7 +7,7 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
 import com.example.apidog.model.BreedDog
 import com.example.apidog.model.ListDog
-import com.example.apidog.model.local.ApiDogBD
+import com.example.apidog.model.dao.ApiDogBD
 import com.example.apidog.model.remote.ApiDogRepository
 import kotlinx.coroutines.launch
 

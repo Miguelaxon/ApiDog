@@ -1,11 +1,10 @@
-package com.example.apidog.model.local
+package com.example.apidog.model.dao
 
 import android.content.Context
 import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
 import com.example.apidog.model.BreedDog
-import com.example.apidog.model.BreedDogDAO
 import com.example.apidog.model.ListDog
 
 @Database(entities = [BreedDog::class, ListDog::class], version = 1)

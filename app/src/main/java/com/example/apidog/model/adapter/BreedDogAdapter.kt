@@ -1,4 +1,4 @@
-package com.example.apidog.model
+package com.example.apidog.model.adapter
 
 import android.view.LayoutInflater
 import android.view.View
@@ -7,6 +7,7 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.recyclerview.widget.RecyclerView
 import com.example.apidog.databinding.ItemBreedBinding
+import com.example.apidog.model.BreedDog
 
 class BreedDogAdapter: RecyclerView.Adapter<BreedDogAdapter.BreedDogViewHolder>() {
     private var listBreedDog = listOf<BreedDog>()

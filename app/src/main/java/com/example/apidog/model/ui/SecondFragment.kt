@@ -1,21 +1,15 @@
-package com.example.apidog
+package com.example.apidog.model.ui
 
 import android.os.Bundle
-import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Button
-import android.widget.ListAdapter
-import android.widget.Toast
 import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.Observer
-import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.bumptech.glide.Glide
 import com.example.apidog.databinding.FragmentSecondBinding
-import com.example.apidog.model.ListDogAdapter
+import com.example.apidog.model.adapter.ListDogAdapter
 import com.example.apidog.model.viewmodel.ApiDogViewModel
 
 class SecondFragment : Fragment() {
@@ -44,11 +38,8 @@ class SecondFragment : Fragment() {
         binding.rv2.layoutManager = LinearLayoutManager(context)
         binding.tvTitulo.text = bunBreed.toUpperCase()
         viewModel.returnImage(bunBreed).observe(viewLifecycleOwner, Observer {
-            it?.let {
-                adapter.run {
-                    it
-                }
-                //adapter.updateList(it)
+            it?.runCatching {
+                adapter.updateList(it)
             }
         })
     }

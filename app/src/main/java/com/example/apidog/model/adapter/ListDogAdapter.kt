@@ -1,4 +1,4 @@
-package com.example.apidog.model
+package com.example.apidog.model.adapter
 
 import android.view.LayoutInflater
 import android.view.View
@@ -7,12 +7,13 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
-import com.example.apidog.databinding.ItemBreedBinding
 import com.example.apidog.databinding.ItemImageviewBinding
+import com.example.apidog.model.ListDog
 
 class ListDogAdapter: RecyclerView.Adapter<ListDogAdapter.ListDogViewHolder>() {
     private var listListDog = listOf<ListDog>()
     private var selectedList = MutableLiveData<ListDog>()
+    private lateinit var listDog2: ListDog
 
     fun selectedList(): LiveData<ListDog> = selectedList
 
