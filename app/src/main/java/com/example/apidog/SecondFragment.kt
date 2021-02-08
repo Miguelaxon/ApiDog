@@ -42,12 +42,11 @@ class SecondFragment : Fragment() {
         val adapter = ListDogAdapter()
         binding.rv2.adapter = adapter
         binding.rv2.layoutManager = LinearLayoutManager(context)
-       //binding.tvTitulo.text = bunBreed.toUpperCase()
         viewModel.returnImage(bunBreed).observe(viewLifecycleOwner, Observer {
             it?.let {
-                Log.d("image","$it")
+                //Log.d("image","$it")
                 //Glide.with(binding.imageView2).load(it[0].list_dog).into(binding.imageView2)
-                adapter.updateList(it)
+                //adapter.updateList(it)
             }
         })
     }

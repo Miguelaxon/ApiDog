@@ -8,6 +8,6 @@ import androidx.room.PrimaryKey
 import com.google.gson.annotations.SerializedName
 
 @Entity(tableName = "breed_dog")
-data class BreedDog(@PrimaryKey(autoGenerate = true) @NonNull var id: Int = 0,
+data class BreedDog(@PrimaryKey
                     var breed_dog: String,
                     var status: String)

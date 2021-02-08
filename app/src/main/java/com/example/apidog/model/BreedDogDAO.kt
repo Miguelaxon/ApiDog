@@ -26,9 +26,6 @@ interface BreedDogDAO {
     @Query("SELECT * FROM list_dog")
     fun getAllListDog(): LiveData<List<ListDog>>
 
-    @Query("SELECT * FROM breed_dog WHERE id = :mId")
-    fun getBreedDog(mId: Int): LiveData<BreedDog>
-
     @Query("SELECT * FROM list_dog WHERE status = :mList")
     fun getListDog(mList: String): LiveData<List<ListDog>>
 }

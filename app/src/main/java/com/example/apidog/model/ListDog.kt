@@ -8,7 +8,7 @@ import androidx.room.PrimaryKey
 import com.google.gson.annotations.SerializedName
 
 @Entity(tableName = "list_dog")
-data class ListDog(@PrimaryKey(autoGenerate = true) @NonNull var id: Int = 0,
+data class ListDog(@PrimaryKey
                    var list_dog: String,
                    var status: String)
 
