@@ -39,16 +39,15 @@ class SecondFragment : Fragment() {
     }
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        var adapter = ListDogAdapter()
+        val adapter = ListDogAdapter()
         binding.rv2.adapter = adapter
         binding.rv2.layoutManager = LinearLayoutManager(context)
-        binding.tvTitulo.text = bunBreed.toUpperCase()
+       //binding.tvTitulo.text = bunBreed.toUpperCase()
         viewModel.returnImage(bunBreed).observe(viewLifecycleOwner, Observer {
             it?.let {
                 Log.d("image","$it")
+                //Glide.with(binding.imageView2).load(it[0].list_dog).into(binding.imageView2)
                 adapter.updateList(it)
-                Toast.makeText(context, "Titulo $bunBreed La cantidad de fotos es ${it}",
-                        Toast.LENGTH_LONG).show()
             }
         })
     }
