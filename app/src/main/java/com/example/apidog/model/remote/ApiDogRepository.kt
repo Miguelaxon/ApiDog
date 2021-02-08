@@ -10,7 +10,7 @@ import com.example.apidog.model.ListDog
 
 class ApiDogRepository (private val breedDogDAO: BreedDogDAO){
     private val service = ApiDogClient.getApiDogClient()
-    val liveDataBreedDog = MutableLiveData<List<BreedDog>>()
+    val listFavImages = breedDogDAO.getAllImageFav()
 
     val listAllBreed: LiveData<List<BreedDog>> = breedDogDAO.getAllBreedDog()
 
@@ -25,7 +25,7 @@ class ApiDogRepository (private val breedDogDAO: BreedDogDAO){
     fun converterImage(listadoString: List<String>, breed: String): List<ListDog>{
         var listaListDog: MutableList<ListDog> = mutableListOf()
         listadoString.map {
-            listaListDog.add(ListDog(list_dog = it, status = breed))
+            listaListDog.add(ListDog(list_dog = it, status = breed, favorites = false))
         }
         return listaListDog
     }

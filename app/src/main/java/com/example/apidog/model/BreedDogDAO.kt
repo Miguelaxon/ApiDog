@@ -1,10 +1,7 @@
 package com.example.apidog.model
 
 import androidx.lifecycle.LiveData
-import androidx.room.Dao
-import androidx.room.Insert
-import androidx.room.OnConflictStrategy
-import androidx.room.Query
+import androidx.room.*
 
 @Dao
 interface BreedDogDAO {
@@ -28,4 +25,10 @@ interface BreedDogDAO {
 
     @Query("SELECT * FROM list_dog WHERE status = :mList")
     fun getListDog(mList: String): LiveData<List<ListDog>>
+
+    @Update
+    suspend fun updateImage(listDog: ListDog)
+
+    @Query("SELECT * FROM list_dog WHERE favorites = 1")
+    fun getAllImageFav(): LiveData<List<ListDog>>
 }
