@@ -12,6 +12,7 @@ import android.widget.Toast
 import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.Observer
 import androidx.navigation.fragment.findNavController
+import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.bumptech.glide.Glide
 import com.example.apidog.databinding.FragmentSecondBinding
@@ -41,12 +42,27 @@ class SecondFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         val adapter = ListDogAdapter()
         binding.rv2.adapter = adapter
-        binding.rv2.layoutManager = LinearLayoutManager(context)
+        binding.rv2.layoutManager = GridLayoutManager(context, 2)
         viewModel.returnImage(bunBreed).observe(viewLifecycleOwner, Observer {
             it?.let {
                 //Log.d("image","$it")
                 //Glide.with(binding.imageView2).load(it[0].list_dog).into(binding.imageView2)
                 adapter.updateList(it)
+            }
+        })
+        adapter.selectedImage().observe(viewLifecycleOwner, Observer {
+            it?.let {
+                Log.d("fav",it.toString())
+                if (it.favorites){
+                    it.favorites = false
+                    viewModel.updateFavImage(it)
+                    Toast.makeText(context, "Ya no es favorito", Toast.LENGTH_LONG).show()
+                } else {
+                    it.favorites = true
+                    viewModel.updateFavImage(it)
+                    Toast.makeText(context, "Es favorito", Toast.LENGTH_LONG).show()
+                }
+                Log.d("fav",it.toString())
             }
         })
     }

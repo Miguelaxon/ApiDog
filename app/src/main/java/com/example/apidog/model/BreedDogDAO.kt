@@ -6,15 +6,9 @@ import androidx.room.*
 @Dao
 interface BreedDogDAO {
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    suspend fun insertBreedDog(breedDog: BreedDog)
-
-    @Insert(onConflict = OnConflictStrategy.REPLACE)
-    suspend fun insertListDog(listDog: ListDog)
-
-    @Insert(onConflict = OnConflictStrategy.REPLACE)
     suspend fun insertAllBreedDog(breedDog: List<BreedDog>)
 
-    @Insert(onConflict = OnConflictStrategy.REPLACE)
+    @Insert(onConflict = OnConflictStrategy.IGNORE)
     suspend fun insertAllListDog(listDog: List<ListDog>)
 
     @Query("SELECT * FROM breed_dog")

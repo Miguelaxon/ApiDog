@@ -1,5 +1,8 @@
 package com.example.apidog.model
 
+import android.graphics.Color
+import android.graphics.PorterDuff
+import android.graphics.PorterDuffColorFilter
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
@@ -14,8 +17,9 @@ import com.example.apidog.databinding.ItemImageviewBinding
 class ListDogAdapter: RecyclerView.Adapter<ListDogAdapter.ListDogViewHolder>() {
     private var listListDog = listOf<ListDog>()
     private var selectedList = MutableLiveData<ListDog>()
+    private var selectedImage = MutableLiveData<ListDog>()
 
-    fun selectedList(): LiveData<ListDog> = selectedList
+    fun selectedImage() = selectedImage
 
     fun updateList(list: List<ListDog>){
         listListDog = list
@@ -23,14 +27,23 @@ class ListDogAdapter: RecyclerView.Adapter<ListDogAdapter.ListDogViewHolder>() {
     }
 
     inner class ListDogViewHolder(private val binding: ItemImageviewBinding):
-        RecyclerView.ViewHolder(binding.root), View.OnClickListener {
+        RecyclerView.ViewHolder(binding.root), View.OnLongClickListener {
         fun bind(listDog: ListDog){
-            Log.d("url", listDog.list_dog)
-            Glide.with(binding.imageView).load(listDog.list_dog).into(binding.imageView)
-            itemView.setOnClickListener(this)
+            Glide.with(binding.imageView)
+                    .load(listDog.list_dog)
+                    .centerCrop()
+                    .into(binding.imageView)
+            if (listDog.favorites){
+                binding.iconLike.setColorFilter(Color.RED)
+            } else {
+                binding.iconLike.clearColorFilter()
+            }
+            itemView.setOnLongClickListener(this)
         }
-        override fun onClick(v: View?) {
-            selectedList.value = listListDog[adapterPosition]
+
+        override fun onLongClick(v: View?): Boolean {
+            selectedImage.value = listListDog[adapterPosition]
+            return true
         }
     }
 

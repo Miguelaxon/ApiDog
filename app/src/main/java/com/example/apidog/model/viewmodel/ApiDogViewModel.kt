@@ -26,8 +26,12 @@ class ApiDogViewModel(application: Application): AndroidViewModel(application) {
         allDataBreed = repository.listAllBreed
     }
 
-    fun returnImage(breed: String): LiveData<List<ListDog>>{
-        return repository.getImageBreed(breed)
+    fun returnImage(breed: String): LiveData<List<ListDog>> = repository.getImageBreed(breed)
+
+    fun getListFavImage(): LiveData<List<ListDog>> = repository.listFavImages
+
+    fun updateFavImage(listDog: ListDog) = viewModelScope.launch {
+        repository.updateFavorites(listDog)
     }
 
     fun selectedImage(breed: String) = viewModelScope.launch{

@@ -9,26 +9,9 @@ import com.example.apidog.model.BreedDogDAO
 import com.example.apidog.model.ListDog
 
 class ApiDogRepository (private val breedDogDAO: BreedDogDAO){
-    private val service = ApiDogClient.getApiDogClient()
     val listFavImages = breedDogDAO.getAllImageFav()
 
     val listAllBreed: LiveData<List<BreedDog>> = breedDogDAO.getAllBreedDog()
-
-    fun converterBreed(listadoString: List<String>): List<BreedDog>{
-        var listaBreedDog: MutableList<BreedDog> = mutableListOf()
-        listadoString.map {
-            listaBreedDog.add(BreedDog(breed_dog = it, status = ""))
-        }
-        return listaBreedDog
-    }
-
-    fun converterImage(listadoString: List<String>, breed: String): List<ListDog>{
-        var listaListDog: MutableList<ListDog> = mutableListOf()
-        listadoString.map {
-            listaListDog.add(ListDog(list_dog = it, status = breed, favorites = false))
-        }
-        return listaListDog
-    }
 
     suspend fun getFetchApiDogCoroutines(){
         try {
@@ -59,7 +42,28 @@ class ApiDogRepository (private val breedDogDAO: BreedDogDAO){
         }
     }
 
+    suspend fun updateFavorites(listDog: ListDog){
+        breedDogDAO.updateImage(listDog)
+    }
+
     fun getImageBreed(breed: String): LiveData<List<ListDog>>{
         return breedDogDAO.getListDog(breed)
     }
+
+    fun converterBreed(listadoString: List<String>): List<BreedDog>{
+        var listaBreedDog: MutableList<BreedDog> = mutableListOf()
+        listadoString.map {
+            listaBreedDog.add(BreedDog(breed_dog = it, status = ""))
+        }
+        return listaBreedDog
+    }
+
+    fun converterImage(listadoString: List<String>, breed: String): List<ListDog>{
+        var listaListDog: MutableList<ListDog> = mutableListOf()
+        listadoString.map {
+            listaListDog.add(ListDog(list_dog = it, status = breed, favorites = false))
+        }
+        return listaListDog
+    }
+
 }
