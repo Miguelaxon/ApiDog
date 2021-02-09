@@ -1,5 +1,6 @@
 package com.example.apidog.model
 
+import android.annotation.SuppressLint
 import android.graphics.Color
 import android.graphics.PorterDuff
 import android.graphics.PorterDuffColorFilter
@@ -31,7 +32,7 @@ class ListDogAdapter: RecyclerView.Adapter<ListDogAdapter.ListDogViewHolder>() {
         fun bind(listDog: ListDog){
             Glide.with(binding.imageView)
                     .load(listDog.list_dog)
-                    .centerCrop()
+                    .circleCrop()
                     .into(binding.imageView)
             if (listDog.favorites){
                 binding.iconLike.setColorFilter(Color.RED)

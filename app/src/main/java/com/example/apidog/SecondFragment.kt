@@ -42,7 +42,7 @@ class SecondFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         val adapter = ListDogAdapter()
         binding.rv2.adapter = adapter
-        binding.rv2.layoutManager = GridLayoutManager(context, 2)
+        binding.rv2.layoutManager = GridLayoutManager(context, 1)
         viewModel.returnImage(bunBreed).observe(viewLifecycleOwner, Observer {
             it?.let {
                 //Log.d("image","$it")
